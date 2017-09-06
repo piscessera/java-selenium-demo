@@ -1,4 +1,6 @@
-package com.sample.test;
+package com.selenium.demo1;
+
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +16,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class TestSample1 {
+public class TestSample2 {
 	private WebDriver driver;
 	private String baseUrl;
 	private boolean acceptNextAlert = true;
@@ -22,30 +24,28 @@ public class TestSample1 {
 
 	@Before
 	public void setUp() throws Exception {
-		//System.setProperty("webdriver.chrome.drive", "/Users/piscessera/Documents/sdk/webdriver/chromedriver");
 		driver = new ChromeDriver();
-		baseUrl = "https://www.google.co.th/";
+		baseUrl = "http://www.calculator.net/";
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	}
 
 	@Test
-	public void testGoogle() throws Exception {
+	public void testCalculator() throws Exception {
 		driver.get(baseUrl + "/");
-		driver.findElement(By.id("lst-ib")).clear();
-		driver.findElement(By.id("lst-ib")).sendKeys("selenium");
-		driver.findElement(By.name("btnK")).click();
+		driver.findElement(By.linkText("Gas Mileage Calculator")).click();
+		driver.findElement(By.id("uscodreading")).clear();
+		driver.findElement(By.id("uscodreading")).sendKeys("12000");
+		driver.findElement(By.id("uspodreading")).clear();
+		driver.findElement(By.id("uspodreading")).sendKeys("10000");
+		driver.findElement(By.id("usgasputin")).clear();
+		driver.findElement(By.id("usgasputin")).sendKeys("40");
+		driver.findElement(By.id("usgasprice")).clear();
+		driver.findElement(By.id("usgasprice")).sendKeys("4.5");
+		driver.findElement(By.cssSelector("input[type=\"image\"]")).click();
 		try {
-			assertEquals("selenium", driver.findElement(By.id("lst-ib")).getAttribute("value"));
-		} catch (Error e) {
-			verificationErrors.append(e.toString());
-		}
-		try {
-			assertEquals("selenium - ค้นหาด้วย Google", driver.getTitle());
-		} catch (Error e) {
-			verificationErrors.append(e.toString());
-		}
-		try {
-			assertEquals("selenium", driver.findElement(By.id("lst-ib")).getAttribute("value"));
+			String result = driver.findElement(By.xpath(".//*[@id='content']/font/b")).getText();
+			assertEquals("50.00 miles per gallon", result);
+//			assertEquals("50.00 miles per gallon", driver.findElement(By.cssSelector("b")).getText());
 		} catch (Error e) {
 			verificationErrors.append(e.toString());
 		}

@@ -1,4 +1,4 @@
-package com.sample.test;
+package com.selenium.demo4;
 
 import java.util.concurrent.TimeUnit;
 

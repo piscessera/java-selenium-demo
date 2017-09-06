@@ -1,4 +1,4 @@
-package com.sample.test;
+package com.selenium.demo4;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;

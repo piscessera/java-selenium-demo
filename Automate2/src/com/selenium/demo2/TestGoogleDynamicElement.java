@@ -1,4 +1,4 @@
-package com.sample.test;
+package com.selenium.demo2;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -11,7 +11,7 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import com.gargoylesoftware.htmlunit.BrowserVersion;
 
-public class TestYahooDynamicElement {
+public class TestGoogleDynamicElement {
 
 	public static void main(String[] args) throws InterruptedException {
 		// Use silent mode
@@ -19,14 +19,14 @@ public class TestYahooDynamicElement {
 //		System.out.println("Browser: " + driver.getBrowserVersion());
 		WebDriver driver = new ChromeDriver();
 
-		driver.navigate().to("https://www.yahoo.com/");
+		driver.navigate().to("https://www.google.com/");
 		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		System.out.println("Current URL: " + driver.getCurrentUrl());
 
-		driver.findElement(By.cssSelector("#uh-search-box")).sendKeys("Selenium");
+		driver.findElement(By.id("lst-ib")).sendKeys("Selenium");
 		System.out.println("Current URL: " + driver.getCurrentUrl());
 		
-		List<WebElement> childElements = driver.findElements(By.cssSelector(".yui3-aclist-item"));
+		List<WebElement> childElements = driver.findElements(By.cssSelector("li.sbsb_c.gsfs > div:first-child[role='option']"));
 		
 		for (WebElement childElement : childElements) {
 			System.out.println(childElement.getText());
